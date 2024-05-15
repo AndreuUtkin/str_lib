@@ -9,21 +9,27 @@ def which_alfabetter(left:List[Char],right:List[Char]):Char= {
   else if(left.head.toInt == right.head.toInt) which_alfabetter(left.tail,right.tail)
   else '?'
 }
-//модификация my_filtre для функции which_alfabetter см lib.SorsFiltres
-def filtre_by_alfabet(list: List[List[Char]],option: Char,pivot:List[Char]):List[List[Char]]={
-  list match {
-    case Nil => List.empty
-    case head :: tail => if(which_alfabetter(head,pivot)==option) List(list.head) ++ filtre_by_alfabet(list.tail,option,pivot) else filtre_by_alfabet(list.tail,option,pivot)
+def alfaMax(left:List[Char],right:List[Char]):List[Char]={
+  left match {
+    case Nil if(right==List.empty) => List.empty
+    case Nil if(right!=List.empty) =>left
+    case head::tail if(right==List.empty) => right
+    case head::tail if(right!=List.empty)=>{
+      if(left.head.toInt < right.head.toInt) left
+      else if(left.head.toInt > right.head.toInt) right
+      else alfaMax(left.tail,right.tail)
+    }
   }
 }
-//переделанный sort_by для filtre_by_alfabet см. lib.SorsFiltres
-def sort_by_alfabet(lst: List[List[Char]]): List[List[Char]] = {
-  if (lst==List.empty) lst
+
+def alfaSort(lst: List[List[Char]]): List[List[Char]] = {
+  if (lst == List.empty) lst
   else {
     val pivot = lst(recursive_length(lst) / 2)
-    sort_by_alfabet(filtre_by_alfabet(lst,'l',pivot)) ++
-      filtre_by_alfabet(lst,'e',pivot) ++
-      sort_by_alfabet(filtre_by_alfabet(lst,'r',pivot))
+    alfaSort(my_filtre(lst,(x=>if(alfaMax(x,pivot)==x)true else false))) ++
+      my_filtre(lst,(x=>if(alfaMax(x,pivot)==List.empty)true else false)) ++
+        my_filtre(lst, (x => if (alfaMax(x, pivot) == pivot) true else false))
   }
 }
+
  

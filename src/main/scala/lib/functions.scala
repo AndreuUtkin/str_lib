@@ -7,7 +7,7 @@ def count_in_str(str:String,ch:Char):Int={
 }
 //делим строку на слова см lib.word_cut
 def word_cut(str:String): List[String] = {
-  wordcut(str.toList++List(' '),List.empty,List.empty)
+  my_map(wordCut(str.toList),(x=>x.mkString))
 }
 //функция находящая уникальные слова в строке см lib.word_cut
 def word_cut_unigue(str:String):List[String]={
@@ -35,7 +35,7 @@ def Find_word(str:String,charector:String):String={
 }
 //Сортирует строку по алфавиту см lib.Alfabet_sort
 def str_alfabet_sort(str:String):List[String]={
-  my_map(sort_by_alfabet(my_map(word_cut(str), (x: String) => x.toList)),(x: List[Char]) => x.mkString)
+  my_map(alfaSort(my_map(word_cut(str), (x: String) => x.toList)),(x: List[Char]) => x.mkString)
 }
 
 
