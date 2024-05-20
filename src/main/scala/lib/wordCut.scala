@@ -21,28 +21,28 @@ def wordCut(lst:List[Char]):List[List[Char]]={
   }
 }
 // функция находящая элемент в массиве
-def ifexist(list:List[_],character: Any):Boolean= {
+def ifExist(list:List[_],character: Any):Boolean= {
   list match {
     case Nil => false
     case head :: tail => {
-      if (list.head == character) true else ifexist(list.tail, character)
+      if (list.head == character) true else ifExist(list.tail, character)
     }
   }
 }
 
 //функция удаляющая дубликаты из массива
-def anti_dublicate[T](list:List[T]):List[T]={
+def antiDublicate[T](list:List[T]):List[T]={
   list match {
     case Nil => List.empty
-    case head :: tail => if (ifexist(list.tail,list.head)) list.tail else List(list.head) ++ list.tail
+    case head :: tail => if (ifExist(list.tail,list.head)) list.tail else List(list.head) ++ antiDublicate(list.tail)
   }
 }
 //вставляет пробелы
-def Spacer(lst:List[String]):List[String]= {
+def spacer(lst:List[String]):List[String]= {
   lst match {
     case Nil => lst
     case head :: tail => {
-      List(lst.head, " ") ++ Spacer(lst.tail)
+      List(lst.head, " ") ++ spacer(lst.tail)
     }
   }
 }

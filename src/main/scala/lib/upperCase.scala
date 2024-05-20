@@ -1,6 +1,6 @@
 package lib
 //функция возвращающая заглавную букву в ответ на строчную
-def Upper(ch:Char):Char={
+def upper(ch:Char):Char={
   ch match {
     case 'a' => 'A'
     case 'b' => 'B'
@@ -65,10 +65,10 @@ def Upper(ch:Char):Char={
   }
 }
 //функция преобразовывающая список строчных букв в список Заглавных букв
-def UpperList(lst:List[Char]):List[Char] ={
+def upperList(lst:List[Char]):List[Char] ={
   lst match {
     case Nil => List.empty
-    case head :: tail => List(Upper(lst.head))++UpperList(lst.tail)
+    case head :: tail => List(upper(lst.head))++upperList(lst.tail)
   }
 }
 
