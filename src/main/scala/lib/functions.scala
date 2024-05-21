@@ -26,12 +26,12 @@ def sortWords(str:String):List[String]={
   sortBy(wordCutStr(str),lenghtString)
 }
 //Делает строку капса см lib.UpperCase
-def upperString(str:String):String={
+def otherString(str:String):String={
   otherList(str.toList).mkString
 }
 //Выделяет капсом нужное слово см lib.UpperCase
 def findWord(str:String,charector:String):String={
-  spacer(myMap(wordCutStr(str),(x=>if(x==charector)upperString(x) else x))).mkString
+  spacer(myMap(wordCutStr(str),(x=>if(x==charector)otherString(x) else x))).mkString
 }
 //Сортирует строку по алфавиту см lib.Alfabet_sort
 def strAlfabetSort(str:String):List[String]={
