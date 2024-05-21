@@ -27,7 +27,7 @@ def sortWords(str:String):List[String]={
 }
 //Делает строку капса см lib.UpperCase
 def upperString(str:String):String={
-  upperList(str.toList).mkString
+  otherList(str.toList).mkString
 }
 //Выделяет капсом нужное слово см lib.UpperCase
 def findWord(str:String,charector:String):String={
@@ -37,5 +37,12 @@ def findWord(str:String,charector:String):String={
 def strAlfabetSort(str:String):List[String]={
   myMap(alfaSort(myMap(wordCutStr(str), (x: String) => x.toList)),(x: List[Char]) => x.mkString)
 }
-
-
+def strMap(list: String,lambda: (Char=>Any) ):List[Any]={
+  myMap(list.toList,lambda)
+}
+def mySubString(str:String,start:Int,stop:Int):String={
+  mySubList(str.toList,start,stop).mkString
+}
+def mySliding(str:String,num:Int):List[String]={
+  myMap(mySlidingList(str.toList,num),(x=>x.mkString))
+}

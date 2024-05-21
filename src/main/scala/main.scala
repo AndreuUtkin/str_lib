@@ -1,24 +1,30 @@
 import lib.{*}
 @main
 def main(): Unit = {
-  // Функции обработки строк в файле lib.functions
-val str="one two three four five six seven eight nine ten"
-  println("Строка :"+str)
-  //lenght_string считает длинну строки
-  println("Длинна строки ="+lenghtString(str))
-  //count_in_str считает появления символа
-  println("Символ 'o' встречается: "+count_in_str(str,'o'))
-  //word_cut возвращает список слов
-  println("Спиок слов :"+wordCutStr(str))
-//shortest_word возвращает первое слово в списке слов отсортированном по длинне в порядке возрастания
-println("Самое короткое слово: "+shortestWord(str))
-//longest_word возвращает последнее слово в списке слов по возрастанию
-  println("Самое длинное слово: "+longestWord(str))
-  //сам список
-  println("Слова по возрастанию длинны: "+ sortWords(str))
-  //Find_word отмечает указанное слово капсом если оно есть
-  println("Слово 'five' :" +findWord(str,"five"))
-//str_alfabet_sort сортирует слова по алфовиту
-println("Сортировка по алфовиту : "+strAlfabetSort(str))
+  //Дана строка. Если она начинается на 'abc', то заменить их на 'www',
+  // иначе добавить в конец строки 'zzz'.
+  val str="abcdef"
+  println(if(mySubString(str,0,3)=="abc")"www"++mySubString(str,3,lenghtString(str)) else str++"zzz")
+  //Замените в строке все вхождения 'word' на 'letter'.
+  val word="listen to my word"
+  println(spacer(myMap(wordCutStr(word),(x=>if(x=="word")"letter" else x))).mkString)
+  //Дана строка. Определить, содержит ли строка только символы 'a', 'b', 'c' или нет.
+  val abac="abac"
+  val abaList=abac.toList
+  println(if(myCount(abaList,(x=>if(x=='a'|| x=='b' || x=='c') true else false))==lenghtString(abac)) true else false)
+  //Найдите количество вхождения 'aba' в строку.
+  val aba="ababaka"
+  val subAba="aba"
+  println(mySum(myMap(mySliding(aba,lenghtString(subAba)), (x=>if(x=="aba")1 else 0))))
+  //Напечатать все слова, которые состоят из тех же букв что и последнее слово текста
+  val txt="cab bac lol abc"
+  val txtWords=wordCutStr(txt)
+  println(myFilter(txtWords,x=>if(sortBy(x.toList,x=>x.toInt)==sortBy(txtWords.last.toList,x=>x.toInt))true else false))
+  //Напечатать самое длинное слово на букву 'a'
+  val longA="allocate ale cucumbers"
+  val wordsLongA=wordCutStr(longA)
+  val filtredLonga=myFilter(wordsLongA,x=>if(x.toList.head=='a')true else false)
+  val resultLonga=sortBy(filtredLonga,lenghtString).last
+  println(resultLonga)
 
 }
